@@ -8,7 +8,13 @@ namespace DM_Discord_Bot
 {
     class Program
     {
-        static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
+        static void Main(string[] args)
+        {
+            Quoter quoter = new Quoter(@"C:\Users\Kacper\Desktop\DumbQuotes.xml");
+            Console.ReadLine();
+        }
+
+        //static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
 
         private DiscordSocketClient client;
         private CommandHandler handler;
