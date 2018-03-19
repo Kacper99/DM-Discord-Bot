@@ -11,17 +11,14 @@ using Discord;
 
 namespace DM_Discord_Bot
 {
-    class MyBot
+    public class MyBot
     {
         private DiscordSocketClient client;
-        private CommandService commands;
-        private IServiceProvider services;
+        private CommandHandler handler;
 
         public async Task RunBotAsync()
         {
             client = new DiscordSocketClient();
-            commands = new CommandService();
-            services = new ServiceCollection().AddSingleton(client).AddSingleton(commands).BuildServiceProvider();
 
             //Request the bot prefix
             Console.WriteLine("Enter bot token");
@@ -33,6 +30,7 @@ namespace DM_Discord_Bot
             await client.LoginAsync(TokenType.Bot, botToken);
             await client.StartAsync();
 
+            handler = new CommandHandler(client);
             await Task.Delay(-1);
         }
 
@@ -41,35 +39,6 @@ namespace DM_Discord_Bot
             Console.WriteLine(arg);
 
             return Task.FromResult(0);
-        }
-
-        public async Task RegisterCommandAsync()
-        {
-            client.MessageReceived += HandleCommandAsync;
-
-            await commands.AddModulesAsync(Assembly.GetEntryAssembly());
-        }
-
-        private async Task HandleCommandAsync(SocketMessage sm)
-        {
-            var message = sm as SocketUserMessage;
-
-            if (message == null || message.Author.IsBot) return;
-
-            int smPos = 0;
-
-            if (message.HasStringPrefix("km!", ref smPos) || message.HasMentionPrefix((client.CurrentUser), ref smPos))
-            {
-                var context = new SocketCommandContext(client, message);
-
-                var result = await commands.ExecuteAsync(context, smPos, services);
-
-                if (!result.IsSuccess)
-                    Console.WriteLine(result.ErrorReason);
-
-
-                
-            }
         }
         
     }
