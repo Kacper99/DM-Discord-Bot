@@ -18,11 +18,11 @@ namespace DM_Discord_Bot
             client = new DiscordSocketClient();
 
             //Request the bot prefix
-            //Console.WriteLine("Enter bot token");
-            //string botToken = Console.ReadLine();
+            Console.WriteLine("Enter bot token");
+            string botToken = Console.ReadLine();
 
             client.Log += Log;
-            await client.LoginAsync(TokenType.Bot, "NDI1MTAwNzY1NTI3Mjc3NTc4.DZFSTg.eqM62PP5Rv36UQEZxYgvVyIuuxM");
+            await client.LoginAsync(TokenType.Bot, botToken);
             await client.StartAsync();
 
             handler = new CommandHandler(client);
