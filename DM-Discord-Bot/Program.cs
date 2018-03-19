@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Discord.WebSocket;
+using Discord.Commands;
+using System;
 using System.Threading.Tasks;
 
 namespace DM_Discord_Bot
@@ -10,6 +9,8 @@ namespace DM_Discord_Bot
     {
         static void Main(string[] args)
         {
+            MyBot bot = new MyBot();
+            bot.RunBotAsync().GetAwaiter().GetResult();
         }
     }
 }
