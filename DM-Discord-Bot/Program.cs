@@ -22,12 +22,21 @@ namespace DM_Discord_Bot
             string botToken = Console.ReadLine();
 
             client.Log += Log;
+            client.UserJoined += AnnounceUserJoined;
+
             await client.LoginAsync(TokenType.Bot, botToken);
             await client.StartAsync();
 
             handler = new CommandHandler(client);
 
             await Task.Delay(-1);
+        }
+
+        private async Task AnnounceUserJoined(SocketGuildUser user)
+        {
+            var guild = user.Guild;
+            var channel = guild.DefaultChannel;
+            await channel.SendMessageAsync($"Welcome, {user.Mention}, you have now been placed on an FBI watch list");
         }
 
         private Task Log(LogMessage arg)
