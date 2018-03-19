@@ -20,15 +20,40 @@ namespace DM_Discord_Bot
         public Quoter(string path)
         {
             quoteList = new List<Quote>();
-            quoteList.Add(new Quote("Kacper", "Something jsd"));
-            quoteList.Add(new Quote("dfsd", "sdfds jsfddfsd"));
+            loadQuotes(path);
+        }
 
-            //Using XML
-            using (Stream fs = new FileStream(@"C:\Users\Kacper\Desktop\DumbQuotes3.xml", FileMode.Create))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Quote>));
-                serializer.Serialize(fs, quoteList);
-            }
+        public Quote getQuote(int index)
+        {
+            if (index < 0 || index > quoteList.Capacity - 1)
+                throw new IndexOutOfRangeException("Index out of quote list range");
+
+            return quoteList[index];
+        }
+
+        public Quote getRandomQuote()
+        {
+            Random rand = new Random();
+            int randomNum = rand.Next(quoteList.Capacity - 1);
+
+            return quoteList[randomNum];
+        }
+
+        public void saveQuotes(string path)
+        {
+            Stream stream = File.Open(path, FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, quoteList);
+            stream.Close();
+            quoteList.Clear();
+        }
+
+        public void loadQuotes(string path)
+        {
+            Stream stream = File.Open(path, FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            quoteList = (List<Quote>)bf.Deserialize(stream);
+            Console.WriteLine(quoteList[2]);
         }
     }
 }
