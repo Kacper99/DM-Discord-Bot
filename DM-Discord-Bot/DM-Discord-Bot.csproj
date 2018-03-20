@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DM_Discord_Bot</RootNamespace>
     <AssemblyName>DM-Discord-Bot</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandler.cs" />
+    <Compile Include="Modules\Help.cs" />
     <Compile Include="Modules\RandomQuotes.cs" />
     <Compile Include="Modules\RedditCommands.cs" />
     <Compile Include="Modules\Test.cs" />

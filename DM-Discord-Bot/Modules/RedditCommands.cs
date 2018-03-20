@@ -9,23 +9,28 @@ using RedditSharp.Things;
 namespace DM_Discord_Bot.Modules
 {
     [Group("reddit")]
-    class RedditCommands : ModuleBase<SocketCommandContext>
+    public class RedditCommands : ModuleBase<SocketCommandContext>
     {
         RedditHandler redditHandler = new RedditHandler();
-
-        /*
+        
         [Command]
         public async Task DefaultCommandAsync()
         {
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("Error: No command")
+                .WithDescription("Type !reddit help for commands");
 
+            await ReplyAsync("", false, builder);
         }
 
         [Command("help")]
         public async Task HelpCommandAsync()
         {
-
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("Reddit command help")
+                .AddInlineField("!reddit top <subreddit>", "This will print the top 5 posts from that subreddit");
         }
-        */
+        
 
         [Command("top")]
         public async Task TopPostsAsync(string subreddit)
@@ -37,10 +42,11 @@ namespace DM_Discord_Bot.Modules
 
             foreach(Post post in posts)
             {
-                builder.AddInlineField(post.Title, post.Url);
+                await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
+                //builder.AddInlineField(post.Title, post.Url);
             }
 
-            await ReplyAsync("", false, builder);
+            //await ReplyAsync("", false, builder);
         }
     }
 }
