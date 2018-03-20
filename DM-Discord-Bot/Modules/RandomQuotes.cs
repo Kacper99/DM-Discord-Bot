@@ -1,9 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DM_Discord_Bot.Modules
@@ -44,7 +41,8 @@ namespace DM_Discord_Bot.Modules
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle("Random Quote Help")
                 .AddInlineField("!randomquote", "This will randomly print a quote")
-                .AddInlineField("!randomquote add \"name\" \"quote\"", "Add a quote. You must enter the name of who said it and the actual code");
+                .AddInlineField("!randomquote add \"name\" \"quote\"", "Add a quote. You must enter the name of who said it and the actual code")
+                .AddInlineField("!randomquote getAll", "Prints out all the quotes");
 
             await ReplyAsync("", false, builder);
         }

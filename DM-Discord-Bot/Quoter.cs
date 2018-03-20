@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
 
 namespace DM_Discord_Bot
 {
     public class Quoter
     {
-        List<Quote> quoteList;
-        string lastPath;
+        List<Quote> quoteList; //Store all the quotes
+        string lastPath; //Store the last path that was used to store the quotes
 
         public Quoter()
         {
@@ -62,8 +60,8 @@ namespace DM_Discord_Bot
         public void SaveQuotes(string path)
         {
             Stream stream = File.Open(path, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(stream, quoteList);
+            BinaryFormatter bf = new BinaryFormatter(); //Use a binary formatter to serialize the data
+            bf.Serialize(stream, quoteList); //Serialize the quoteList into the stream
             stream.Close();
             quoteList.Clear();
             lastPath = path;
@@ -73,7 +71,7 @@ namespace DM_Discord_Bot
         {
             Stream stream = File.Open(path, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
-            if (stream.Length == 0)
+            if (stream.Length == 0) //If the file is empty throw an excpetion.
             {
                 stream.Close();
                 throw new Exception("File is empty, cannot load any quotes");
