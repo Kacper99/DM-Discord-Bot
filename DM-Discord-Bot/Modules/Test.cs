@@ -39,11 +39,5 @@ namespace DM_Discord_Bot.Modules
 
             await ReplyAsync("", false, builder.Build());
         }
-
-        [Command("Test4")]
-        public async Task TaskFourAsync()
-        {
-
-        }
     }
 }
