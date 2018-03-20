@@ -31,6 +31,11 @@ namespace DM_Discord_Bot.Modules
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Quote: " + text);
             quoter.AddQuote(name, text);
+
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("Added new quote by " + name)
+                .WithCurrentTimestamp();
+            await ReplyAsync("", false, builder);
         }
 
         [Command("help")]

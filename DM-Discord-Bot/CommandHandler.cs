@@ -12,23 +12,22 @@ namespace DM_Discord_Bot
     public class CommandHandler
     {
         private DiscordSocketClient client;
-
         private CommandService service;
 
         public CommandHandler(DiscordSocketClient _client)
         {
             client = _client;
-            service = new CommandService();
 
+            service = new CommandService(); //Initiate a new command service
             service.AddModulesAsync(Assembly.GetEntryAssembly());
 
-            client.MessageReceived += HandleCommandAsync;
+            client.MessageReceived += HandleCommandAsync; //When a message is recieved run HandleCommandAsync
         }
 
         public async Task HandleCommandAsync(SocketMessage s)
         {
-            var msg = s as SocketUserMessage;
-            if (msg == null) return;
+            var msg = s as SocketUserMessage; //The message the user sent
+            if (msg == null) return; //If the msg is null then don't bother doing anything else
 
             var context = new SocketCommandContext(client, msg);
 
