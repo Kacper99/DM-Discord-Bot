@@ -14,11 +14,8 @@ namespace DM_Discord_Bot
         public string name { get; set; }
         public string quote { get; set; }
 
-        public Quote()
-        {
-            name = "n";
-            quote = "q";
-        }
+        public Quote() { }
+
         public Quote(string _name, string _quote)
         {
             name = _name;

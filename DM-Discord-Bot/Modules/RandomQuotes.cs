@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace DM_Discord_Bot.Modules
 {
-
     [Group("randomquote")]
     public class RandomQuotes : ModuleBase<SocketCommandContext>
     {
@@ -17,12 +16,30 @@ namespace DM_Discord_Bot.Modules
         [Command]
         public async Task DefaultCommand()
         {
-
-            Quote randQuote = quoter.getRandomQuote();
+            Quote randQuote = quoter.GetRandomQuote();
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle(randQuote.name)
                 .WithDescription(randQuote.quote)
                 .WithColor(Color.Red);
+
+            await ReplyAsync("", false, builder);
+        }
+
+        [Command("add")]
+        public async Task AddQuoteAsync(string name, string text)
+        {
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Quote: " + text);
+            quoter.AddQuote(name, text);
+        }
+
+        [Command("help")]
+        public async Task PrintHelpAsync()
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("Random Quote Help")
+                .AddInlineField("!randomquote", "This will randomly print a quote")
+                .AddInlineField("!randomquote add \"name\" \"quote\"", "Add a quote. You must enter the name of who said it and the actual code");
 
             await ReplyAsync("", false, builder);
         }
