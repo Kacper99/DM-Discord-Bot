@@ -54,6 +54,11 @@ namespace DM_Discord_Bot
             return quoteList[randomNum];
         }
 
+        public int GetElementNumber()
+        {
+            return quoteList.Count;
+        }
+
         public void SaveQuotes(string path)
         {
             Stream stream = File.Open(path, FileMode.Create);

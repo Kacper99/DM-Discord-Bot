@@ -48,5 +48,20 @@ namespace DM_Discord_Bot.Modules
 
             await ReplyAsync("", false, builder);
         }
+
+        [Command("getAll")]
+        public async Task GetAllQuotesAsync()
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("All quotes")
+                .WithColor(Color.Red);
+            for (int i = 0; i < quoter.GetElementNumber(); i++)
+            {
+                Quote q = quoter.GetQuote(i);
+                builder.AddField(q.name, q.quote);
+            }
+
+            await ReplyAsync("", false, builder);
+        }
     }
 }
