@@ -25,7 +25,7 @@ namespace DM_Discord_Bot
 
         public Quote getQuote(int index)
         {
-            if (index < 0 || index > quoteList.Capacity - 1)
+            if (index < 0 || index > quoteList.Count - 1)
                 throw new IndexOutOfRangeException("Index out of quote list range");
 
             return quoteList[index];
@@ -35,7 +35,7 @@ namespace DM_Discord_Bot
         {
             Random rand = new Random();
             int randomNum = rand.Next(quoteList.Capacity - 1);
-
+            Console.WriteLine(quoteList.Count + " : " + randomNum);
             return quoteList[randomNum];
         }
 
@@ -53,7 +53,7 @@ namespace DM_Discord_Bot
             Stream stream = File.Open(path, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             quoteList = (List<Quote>)bf.Deserialize(stream);
-            Console.WriteLine(quoteList[2]);
+            stream.Close();
         }
     }
 }

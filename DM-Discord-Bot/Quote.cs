@@ -11,9 +11,9 @@ namespace DM_Discord_Bot
     [Serializable]
     public class Quote : ISerializable
     {
-        string name { get; set; }
-        string quote { get; set; }
-        
+        public string name { get; set; }
+        public string quote { get; set; }
+
         public Quote()
         {
             name = "n";
