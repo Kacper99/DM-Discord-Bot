@@ -7,6 +7,7 @@ namespace DM_Discord_Bot
 {
     public class Quoter
     {
+        
         List<Quote> quoteList; //Store all the quotes
         string lastPath; //Store the last path that was used to store the quotes
 
@@ -15,7 +16,10 @@ namespace DM_Discord_Bot
             quoteList = new List<Quote>();
         }
 
-        //Will attempt to load the quotes from that file
+        /// <summary>
+        /// Attempts to load quotes from the file and saves them in the quote list
+        /// </summary>
+        /// <param name="path">Path where files are stored</param>
         public Quoter(string path)
         {
             quoteList = new List<Quote>();
@@ -30,6 +34,11 @@ namespace DM_Discord_Bot
             lastPath = path;
         }
 
+        /// <summary>
+        /// Gets a quote from a certain index
+        /// </summary>
+        /// <param name="index">Index to where get the quote from</param>
+        /// <returns>The quote object from that index</returns>
         public Quote GetQuote(int index)
         {
             if (index < 0 || index > quoteList.Count - 1)
@@ -38,12 +47,21 @@ namespace DM_Discord_Bot
             return quoteList[index];
         }
 
+        /// <summary>
+        /// Adds a quote to the quote list and saves it.
+        /// </summary>
+        /// <param name="name">The name of the person who said the quote</param>
+        /// <param name="text">The text in the quote</param>
         public void AddQuote(string name, string text)
         {
             quoteList.Add(new Quote(name, text));
             this.SaveQuotes(lastPath);
         }
 
+        /// <summary>
+        /// Gets a random quote from the quote list
+        /// </summary>
+        /// <returns>A random quote from the quote list</returns>
         public Quote GetRandomQuote()
         {
             Random rand = new Random();
@@ -52,11 +70,19 @@ namespace DM_Discord_Bot
             return quoteList[randomNum];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>The number of elements in the quote list</returns>
         public int GetElementNumber()
         {
             return quoteList.Count;
         }
 
+        /// <summary>
+        /// Saves all the quotes to a file
+        /// </summary>
+        /// <param name="path">File path to save to</param>
         public void SaveQuotes(string path)
         {
             Stream stream = File.Open(path, FileMode.Create);
@@ -67,6 +93,10 @@ namespace DM_Discord_Bot
             lastPath = path;
         }
 
+        /// <summary>
+        /// Loads all the quotes from file
+        /// </summary>
+        /// <param name="path">Path where quotes are located</param>
         public void LoadQuotes(string path)
         {
             Stream stream = File.Open(path, FileMode.Open);

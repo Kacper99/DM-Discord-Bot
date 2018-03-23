@@ -13,6 +13,10 @@ namespace DM_Discord_Bot.Modules
     {
         RedditHandler redditHandler = new RedditHandler();
         
+        /// <summary>
+        /// No default command, instead print an error message
+        /// </summary>
+        /// <returns>Error message</returns>
         [Command]
         public async Task DefaultCommandAsync()
         {
@@ -30,23 +34,20 @@ namespace DM_Discord_Bot.Modules
             builder.WithTitle("Reddit command help")
                 .AddInlineField("!reddit top <subreddit>", "This will print the top 5 posts from that subreddit");
         }
-        
 
+        /// <summary>
+        /// Prints the top 5 posts from a subreddit
+        /// </summary>
+        /// <param name="subreddit">The subreddit to get the posts from</param>
+        /// <returns></returns>
         [Command("top")]
         public async Task TopPostsAsync(string subreddit)
         {
             List<Post> posts = redditHandler.GetTopPosts(subreddit);
-            EmbedBuilder builder = new EmbedBuilder();
-            builder.WithTitle("Top posts from " + subreddit)
-                .WithColor(Color.Orange);
-
             foreach(Post post in posts)
             {
                 await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
-                //builder.AddInlineField(post.Title, post.Url);
             }
-
-            //await ReplyAsync("", false, builder);
         }
     }
 }

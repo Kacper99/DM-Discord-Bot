@@ -1,8 +1,7 @@
 ﻿using Discord.WebSocket;
-using Discord.Commands;
+using Discord;
 using System;
 using System.Threading.Tasks;
-using Discord;
 
 namespace DM_Discord_Bot
 {

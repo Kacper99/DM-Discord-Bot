@@ -10,6 +10,10 @@ namespace DM_Discord_Bot.Modules
 {
     public class Help : ModuleBase<SocketCommandContext>
     {
+        /// <summary>
+        /// Prints out help for all the commands.
+        /// </summary>
+        /// <returns></returns>
         [Command("help")]
         public async Task HelpAsync()
         {
