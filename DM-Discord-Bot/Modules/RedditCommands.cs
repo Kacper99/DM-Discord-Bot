@@ -49,5 +49,35 @@ namespace DM_Discord_Bot.Modules
                 await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
             }
         }
+
+        /// <summary>
+        /// Prints the top 5 rising posts from a subreddit
+        /// </summary>
+        /// <param name="subreddit">The subreddit to get the posts from</param>
+        /// <returns></returns>
+        [Command("rising")]
+        public async Task RisingPostsAsync(string subreddit)
+        {
+            List<Post> posts = redditHandler.GetRisingPosts(subreddit);
+            foreach (Post post in posts)
+            {
+                await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
+            }
+        }
+
+        /// <summary>
+        /// Gets the 5 newest posts from a subreddit
+        /// </summary>
+        /// <param name="subreddit">The subreddit to get the posts from</param>
+        /// <returns></returns>
+        [Command("new")]
+        public async Task NewPostsAsync(string subreddit)
+        {
+            List<Post> posts = redditHandler.GetNewPosts(subreddit);
+            foreach (Post post in posts)
+            {
+                await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
+            }
+        }
     }
 }
