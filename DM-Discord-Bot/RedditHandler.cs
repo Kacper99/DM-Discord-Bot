@@ -14,6 +14,9 @@ namespace DM_Discord_Bot
         WebAgent agent;
         Reddit reddit = new Reddit();
 
+        /// <summary>
+        /// Gets the details to initialise the reddit bot
+        /// </summary>
         public RedditHandler()
         {
             //Read details from a file
@@ -28,6 +31,13 @@ namespace DM_Discord_Bot
             agent = new BotWebAgent(name, password, clientID, clientSecret, redirectURL);
         }
 
+        /// <summary>
+        /// Gets the top 5 posts from a subreddit 
+        /// 
+        /// Excludes stickied posts.
+        /// </summary>
+        /// <param name="targetSubreddit">Name of the subreddit to get the posts from</param>
+        /// <returns>A list of the top 5 posts</returns>
         public List<Post> GetTopPosts(string targetSubreddit)
         {
             List<Post> posts = new List<Post>();
@@ -41,6 +51,42 @@ namespace DM_Discord_Bot
                     break;
             }
             return posts; //TODO: Change this
+        }
+
+        /// <summary>
+        /// Gets the top 5 rising posts from a subreddit
+        /// </summary>
+        /// <param name="targetSubreddit">Name of the subreddit to get the posts from</param>
+        /// <returns>A list of the top 5 rising posts</returns>
+        public List<Post> GetRisingPosts(string targetSubreddit)
+        {
+            List<Post> posts = new List<Post>();
+            Subreddit subreddit = reddit.GetSubreddit("/r/" + targetSubreddit);
+
+            foreach (var post in subreddit.Rising.Take(5))
+            {
+                posts.Add(post);
+            }
+
+            return posts;
+        }
+
+        /// <summary>
+        /// Gets the 5 newest posts from a subreddit
+        /// </summary>
+        /// <param name="targetSubreddit">Name of the subreddit to get the posts from</param>
+        /// <returns>A list of the 5 newest posts</returns>
+        public List<Post> GetNewPosts(string targetSubreddit)
+        {
+            List<Post> posts = new List<Post>();
+            Subreddit subreddit = reddit.GetSubreddit("/r/" + targetSubreddit);
+
+            foreach (var post in subreddit.New.Take(5))
+            {
+                posts.Add(post);
+            }
+
+            return posts;
         }
     }
 }
