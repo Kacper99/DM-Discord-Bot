@@ -32,7 +32,7 @@ namespace DM_Discord_Bot.Modules
         {
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle("Reddit command help")
-                .AddInlineField("!reddit top <subreddit>", "This will print the top 5 posts from that subreddit");
+                .AddInlineField("!reddit top <subreddit> <number of post>", "This will print the top 5 posts from that subreddit");
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace DM_Discord_Bot.Modules
         /// <param name="subreddit">The subreddit to get the posts from</param>
         /// <returns></returns>
         [Command("top")]
-        public async Task TopPostsAsync(string subreddit)
+        public async Task TopPostsAsync(string subreddit, int numOfPosts)
         {
-            List<Post> posts = redditHandler.GetTopPosts(subreddit);
+            List<Post> posts = redditHandler.GetTopPosts(subreddit, numOfPosts);
             foreach(Post post in posts)
             {
                 await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
@@ -56,9 +56,9 @@ namespace DM_Discord_Bot.Modules
         /// <param name="subreddit">The subreddit to get the posts from</param>
         /// <returns></returns>
         [Command("rising")]
-        public async Task RisingPostsAsync(string subreddit)
+        public async Task RisingPostsAsync(string subreddit, int numOfPosts)
         {
-            List<Post> posts = redditHandler.GetRisingPosts(subreddit);
+            List<Post> posts = redditHandler.GetRisingPosts(subreddit, numOfPosts);
             foreach (Post post in posts)
             {
                 await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
@@ -71,9 +71,9 @@ namespace DM_Discord_Bot.Modules
         /// <param name="subreddit">The subreddit to get the posts from</param>
         /// <returns></returns>
         [Command("new")]
-        public async Task NewPostsAsync(string subreddit)
+        public async Task NewPostsAsync(string subreddit, int numOfPosts)
         {
-            List<Post> posts = redditHandler.GetNewPosts(subreddit);
+            List<Post> posts = redditHandler.GetNewPosts(subreddit, numOfPosts);
             foreach (Post post in posts)
             {
                 await Context.Channel.SendMessageAsync(post.Title + " " + post.Url);
