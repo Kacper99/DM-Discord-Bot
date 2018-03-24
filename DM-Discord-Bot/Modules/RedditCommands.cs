@@ -27,6 +27,10 @@ namespace DM_Discord_Bot.Modules
             await ReplyAsync("", false, builder);
         }
 
+        /// <summary>
+        /// Prints help for all the reddit commands
+        /// </summary>
+        /// <returns></returns>
         [Command("help")]
         public async Task HelpCommandAsync()
         {
