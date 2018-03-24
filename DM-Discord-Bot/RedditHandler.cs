@@ -47,7 +47,7 @@ namespace DM_Discord_Bot
             {
                 if (!post.IsStickied)
                     posts.Add(post);
-                if (posts.Count > numOfPosts) //If we get 5 posts break
+                if (posts.Count > numOfPosts - 1) //If we get 5 posts break
                     break;
             }
             return posts; //TODO: Change this
