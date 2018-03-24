@@ -32,7 +32,11 @@ namespace DM_Discord_Bot.Modules
         {
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle("Reddit command help")
-                .AddInlineField("!reddit top <subreddit> <number of post>", "This will print the top 5 posts from that subreddit");
+                .AddInlineField("!reddit top <subreddit> <number of post>", "This will print the top posts from a subreddit")
+                .AddInlineField("!reddit rising <subreddit> <number of post>", "This will print the top rising posts from a subreddit")
+                .AddInlineField("!reddit new <subreddit> <number of post>", "This iwll print the newest posts from a subreddit");
+
+            await ReplyAsync("", false, builder);
         }
 
         /// <summary>
