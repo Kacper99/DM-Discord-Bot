@@ -35,6 +35,23 @@ namespace DM_Discord_Bot.Modules
             await ReplyAsync("", false, builder);
         }
 
+        [Command("remove")]
+        public async Task RemoveQuoteAsync(string name, string text)
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+            builder.WithTitle("Removing quote");
+            Quote quoteToRemove = new Quote(name, text);
+            if (quoter.RemoveQuote(quoteToRemove))
+            {
+                builder.WithDescription("Quote: " + text + " by " + name + " was removed");
+            }
+            else
+            {
+                builder.WithDescription("Quote does not exist");
+            }
+            await ReplyAsync("", false, builder);
+        }
+
         [Command("help")]
         public async Task PrintHelpAsync()
         {
