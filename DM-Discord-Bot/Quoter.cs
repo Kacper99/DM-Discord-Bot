@@ -59,9 +59,9 @@ namespace DM_Discord_Bot
         }
 
         /// <summary>
-        /// 
+        /// Removes a quote from the quote list
         /// </summary>
-        /// <param name="quote"></param>
+        /// <param name="quote">The quote to remove</param>
         /// <returns>Returns whether the element was deleted</returns>
         public bool RemoveQuote(Quote quote)
         {
