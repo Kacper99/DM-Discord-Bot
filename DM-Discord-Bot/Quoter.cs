@@ -59,6 +59,25 @@ namespace DM_Discord_Bot
         }
 
         /// <summary>
+        /// Removes a quote from the quote list
+        /// </summary>
+        /// <param name="quote">The quote to remove</param>
+        /// <returns>Returns whether the element was deleted</returns>
+        public bool RemoveQuote(Quote quote)
+        {
+            foreach(Quote q in quoteList)
+            {
+                if (q.Equals(quote))
+                {
+                    quoteList.Remove(q);
+                    SaveQuotes(lastPath);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Gets a random quote from the quote list
         /// </summary>
         /// <returns>A random quote from the quote list</returns>

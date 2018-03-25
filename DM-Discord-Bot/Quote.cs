@@ -27,6 +27,14 @@ namespace DM_Discord_Bot
             return name + " " + quote;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Quote q = (Quote)obj;
+            return (name == q.name) && (quote == q.quote);
+        }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Name", name);
