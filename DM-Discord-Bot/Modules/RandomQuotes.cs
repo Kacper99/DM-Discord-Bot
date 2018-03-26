@@ -41,7 +41,8 @@ namespace DM_Discord_Bot.Modules
 
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle("Added new quote by " + name)
-                .WithCurrentTimestamp();
+                .WithCurrentTimestamp()
+                .WithColor(Color.Red);
             await ReplyAsync("", false, builder);
         }
 
@@ -55,7 +56,8 @@ namespace DM_Discord_Bot.Modules
         public async Task RemoveQuoteAsync(string name, string text)
         {
             EmbedBuilder builder = new EmbedBuilder();
-            builder.WithTitle("Removing quote");
+            builder.WithTitle("Removing quote")
+                .WithColor(Color.Red);
             Quote quoteToRemove = new Quote(name, text);
             if (quoter.RemoveQuote(quoteToRemove)) //If the quote is removed tell the user what was removed, if not give error
             {
@@ -77,6 +79,7 @@ namespace DM_Discord_Bot.Modules
         {
             EmbedBuilder builder = new EmbedBuilder();
             builder.WithTitle("Random Quote Help")
+                .WithColor(Color.Red)
                 .AddInlineField("!randomquote", "This will randomly print a quote")
                 .AddInlineField("!randomquote add \"name\" \"quote\"", "Add a quote. You must enter the name of who said it and the actual code")
                 .AddInlineField("!randomquote getAll", "Prints out all the quotes");
