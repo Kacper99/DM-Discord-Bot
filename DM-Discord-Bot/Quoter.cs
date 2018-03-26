@@ -42,7 +42,7 @@ namespace DM_Discord_Bot
         public Quote GetQuote(int index)
         {
             if (index < 0 || index > quoteList.Count - 1)
-                throw new IndexOutOfRangeException("Index out of quote list range");
+                throw new IndexOutOfRangeException("Index out of quote list range"); //Throw exception if index is invalid
 
             return quoteList[index];
         }
@@ -54,8 +54,8 @@ namespace DM_Discord_Bot
         /// <param name="text">The text in the quote</param>
         public void AddQuote(string name, string text)
         {
-            quoteList.Add(new Quote(name, text));
-            this.SaveQuotes(lastPath);
+            quoteList.Add(new Quote(name, text)); //Add the qyote to the quote list
+            this.SaveQuotes(lastPath); //Save the quotes
         }
 
         /// <summary>
@@ -65,11 +65,11 @@ namespace DM_Discord_Bot
         /// <returns>Returns whether the element was deleted</returns>
         public bool RemoveQuote(Quote quote)
         {
-            foreach(Quote q in quoteList)
+            foreach(Quote q in quoteList) //Iterate through every quote
             {
-                if (q.Equals(quote))
+                if (q.Equals(quote)) //Check if the quote is equal to the quote in the quote list
                 {
-                    quoteList.Remove(q);
+                    quoteList.Remove(q); //Remove quote from the quote list and save
                     SaveQuotes(lastPath);
                     return true;
                 }
@@ -84,7 +84,7 @@ namespace DM_Discord_Bot
         public Quote GetRandomQuote()
         {
             Random rand = new Random();
-            int randomNum = rand.Next(quoteList.Count);
+            int randomNum = rand.Next(quoteList.Count); //Generate a random number to get a quote from that index
             Console.WriteLine(quoteList.Count + " : " + randomNum);
             return quoteList[randomNum];
         }
@@ -125,7 +125,7 @@ namespace DM_Discord_Bot
                 stream.Close();
                 throw new Exception("File is empty, cannot load any quotes");
             }
-            quoteList = (List<Quote>)bf.Deserialize(stream);
+            quoteList = (List<Quote>)bf.Deserialize(stream); //Get the quote list from the file
             stream.Close();
             lastPath = path;
         }
