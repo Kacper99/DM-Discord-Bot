@@ -110,15 +110,15 @@
   <ItemGroup>
     <Compile Include="CommandHandler.cs" />
     <Compile Include="Modules\Help.cs" />
-    <Compile Include="Modules\RandomQuotes.cs" />
-    <Compile Include="Modules\RedditCommands.cs" />
-    <Compile Include="Modules\Test.cs" />
+    <Compile Include="Modules\RandomQuotes\RandomQuotes.cs" />
+    <Compile Include="Modules\Reddit\RedditCommands.cs" />
+    <Compile Include="Modules\Testing\Test.cs" />
     <Compile Include="MyBot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quote.cs" />
-    <Compile Include="Quoter.cs" />
-    <Compile Include="RedditHandler.cs" />
+    <Compile Include="Modules\RandomQuotes\Quote.cs" />
+    <Compile Include="Modules\RandomQuotes\Quoter.cs" />
+    <Compile Include="Modules\Reddit\RedditHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
