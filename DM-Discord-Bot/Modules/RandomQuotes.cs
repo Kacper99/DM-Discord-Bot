@@ -8,7 +8,7 @@ namespace DM_Discord_Bot.Modules
     [Group("randomquote")]
     public class RandomQuotes : ModuleBase<SocketCommandContext>
     {
-        Quoter quoter = new Quoter(@"C:\Users\Kacper\Desktop\DumbQuotes.xml");
+		Quoter quoter = new Quoter(@"C:\Users\Kacper\Desktop\DumbQuotes.xml"); //Windows version
 
         /// <summary>
         /// Gets a rando quote and prints it
