@@ -17,7 +17,7 @@ namespace DM_Discord_Bot
         public RedditHandler()
         {
 			//Read details from a file
-			StreamReader reader = new StreamReader(@"C:\Users\Kacper\Desktop\info.txt"); //Windows version
+			StreamReader reader = new StreamReader(@"E:\OneDrive\BotFiles\info.txt"); //Windows version
             string name = reader.ReadLine();
             string password = reader.ReadLine();
             string clientID = reader.ReadLine();
